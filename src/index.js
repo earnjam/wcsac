@@ -1,12 +1,33 @@
+var person = {
+  name: 'William',
+  greet() {
+    console.log('Hello ' + this.name)
+  }
+}
+person.greet() // Hello William
 
-/**
- * Internal dependencies
- */
-import DemoButton from './demoButton';
-import AlertButton from "./alertButton";
+function whatIsThis() {
+    console.log(this) // [object Window]
+}
+whatIsThis();
 
-const element = document.querySelector( 'article .entry-content' );
+function greet() {
+    console.log( this.name );
+}
 
-wp.element.render( <h2>Hello World!</h2>, element );
-// wp.element.render( <DemoButton>I'm a button!</DemoButton>, element );
-// wp.element.render( <AlertButton message="Happy WordCamp!">I'm a button that opens an alert!</AlertButton>, element );
+var person = {
+    name: 'William'
+};
+greet.apply( person, [args]); // William
+
+
+function greet() {
+    console.log( 'Hello ' + this.name );
+}
+
+var person = {
+    name: 'William'
+};
+
+var sayHi = greet.bind( person );
+sayHi(); // Hello William
